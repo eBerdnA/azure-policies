@@ -1,0 +1,29 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+            },
+            {
+                "anyOf": [
+                    {
+                        "not": {
+                            "field": "tags",
+                            "containsKey": "costCenter"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "tags",
+                            "containsKey": "businessUnit"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}
